@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: helloworld
+          image: schachte/my-devops
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-srv
+spec:
+  selector:
+    app: helloworld
+  type: NodePort
+  ports:
+    - name: helloworld
+      protocol: TCP
+      port: 8080
+      nodePort: 32321

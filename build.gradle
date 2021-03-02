@@ -1,0 +1,34 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'com.google.cloud.tools.jib' version '2.8.0'
+	id 'java'
+}
+
+group = 'com.schachte'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+jib {
+	to {
+		image = 'schachte/my-devops33'
+		tags = ['jibtest', 'latest']
+	}
+	container {
+		creationTime = 'USE_CURRENT_TIMESTAMP'
+		ports = ['1000', '8080']
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
