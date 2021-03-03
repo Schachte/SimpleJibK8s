@@ -20,7 +20,7 @@ dependencies {
 
 jib {
 	to {
-		image = 'schachte/my-devops33'
+		image = 'schachte/devops-demo'
 		tags = ['jibtest', 'latest']
 	}
 	container {

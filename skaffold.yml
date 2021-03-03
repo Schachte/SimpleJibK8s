@@ -4,12 +4,13 @@ profiles:
   - name: local-dev
     activation:
       - kubeContext: docker-desktop
-      - command: run
     build:
+      tagPolicy:
+        gitCommit: {}
       local:
         push: false
       artifacts:
-        - image: schachte/my-devops35
+        - image: schachte/devops-demo
           jib: {}
     deploy:
       kubectl:
